@@ -112,11 +112,8 @@ tr:nth-child(even){background-color: rgba(238,238,238,.3)}
     overflow: hidden;
 }
 
-.highlight-icon {
-  float:right;
+.team-menu {
+  position:absolute;
+  top:0px;
+  right:0px;
 }
-
-.highlight-icon mat-icon.white {
-  opacity: 0!important;
-}
-

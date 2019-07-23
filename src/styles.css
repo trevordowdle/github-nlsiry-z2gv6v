@@ -17,3 +17,11 @@ body {
 .primary-color {
   color:#3f51b5;
 }
+
+.float-right {
+  float:right;
+}
+
+.relative {
+  position:relative;
+}

@@ -37,10 +37,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let key of scoringKeys; let i = index" (click)="showGroupingModal(key)" 
-        (mouseenter)="hoveredTeam = key" (mouseleave)="hoveredTeam = ''"
-        long-press (longpress)="highlightTeam(key)"
-        >
+        <tr *ngFor="let key of scoringKeys; let i = index" (click)="showGroupingModal(key)">
           <td>
             {{i+1}}
           </td>
@@ -56,14 +53,26 @@
           <td>
             {{formatingUtil.formatTime(raceInfo[key].spread,true)}}
           </td>
-          <td>
+          <td class="relative">
             {{raceInfo[key].score}}
-            <!-- Hover for desktop/long press mobile -->
-            <div *ngIf="true || hoveredTeam === key" class="highlight-icon" matTooltip="Highlight team" matTooltipShowDelay="1000" 
-            (click)="hoveredTeam === key && highlightTeam(key)"
+            <button (click)="stopPropagation()" mat-icon-button [matMenuTriggerFor]="menu" class="float-right team-menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="showGroupingModal(key)">
+                <mat-icon>group</mat-icon>
+                <span>Group</span>
+              </button>
+              <button mat-menu-item (click)="highlightTeam(key)">
+                <mat-icon>highlight</mat-icon>
+                <span>Highlight</span>
+              </button>
+            </mat-menu>
+<!--             <div  class="highlight-icon" matTooltip="Highlight team" matTooltipShowDelay="1000" 
+            (click)="highlightTeam(key)"
             >
-              <mat-icon color="primary" [ngClass]="{'white' : hoveredTeam !== key}">home</mat-icon>
-            </div>
+              <mat-icon color="primary">home</mat-icon>
+            </div> -->
           </td>
         </tr>
       </tbody>

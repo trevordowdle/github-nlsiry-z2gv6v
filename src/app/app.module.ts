@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { LongPressDirective } from './longpress.directive';
-import { MatButtonModule, MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatToolbarModule, MatExpansionModule, MatListModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatToolbarModule, MatExpansionModule, MatListModule, MatSnackBarModule, MatMenuModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -29,12 +28,12 @@ const config = {
 
 @NgModule({
   imports: [ 
-    BrowserModule, BrowserAnimationsModule, FormsModule, DragDropModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatToolbarModule, MatExpansionModule, MatListModule, MatSnackBarModule,
+    BrowserModule, BrowserAnimationsModule, FormsModule, DragDropModule, MatButtonModule, MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatToolbarModule, MatExpansionModule, MatListModule, MatSnackBarModule, MatMenuModule,
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule 
   ],
   entryComponents: [GroupingDialog, AddDialog, ModifyDialog, UrlDialog, ShowURLDialog],
-  declarations: [ Main, RaceType1, GroupingDialog, AddDialog, ModifyDialog, UrlDialog, ShowURLDialog, LongPressDirective],
+  declarations: [ Main, RaceType1, GroupingDialog, AddDialog, ModifyDialog, UrlDialog, ShowURLDialog ],
   bootstrap:    [ Main ]
 })
 export class AppModule { }

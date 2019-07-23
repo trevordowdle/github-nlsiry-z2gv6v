@@ -33,7 +33,6 @@ dropLogic:any;
 formatingUtil:any;
 headerInfoExpanded:boolean = false;
 highlightedTeam:'';
-hoveredTeam:'';
 
 @Input() raceObj:any = {};
 
@@ -261,8 +260,12 @@ hoveredTeam:'';
   }
 
   highlightTeam(team,ev){
-    event.stopPropagation();
+    //event.stopPropagation();
     alert('highlight team ' + team);
+  }
+
+  stopPropagation(){
+    event.stopPropagation();
   }
 
 }
