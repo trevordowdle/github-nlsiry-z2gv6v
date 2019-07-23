@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add Description</h1>
+<div mat-dialog-content>
+  <p *ngIf="!errMessage">Brief Summary</p>
+  <p class="warn" *ngIf="errMessage">{{errMessage}}</p>
+  <mat-form-field>
+    <mat-label>Summary</mat-label>
+    <textarea maxlength="60" matInput [(ngModel)]="data.description">
+    </textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="getLinkClick()">Save</button>
+</div>

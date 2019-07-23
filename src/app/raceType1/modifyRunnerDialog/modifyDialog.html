@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{data.name}}</h2>
+<div mat-dialog-content>
+  <p *ngIf="!errMessage">Modify Runner</p>
+  <p class="warn" *ngIf="errMessage">{{errMessage}}</p>
+  <mat-form-field>
+    <mat-label>Team</mat-label>
+    <input cdkFocusInitial matInput [(ngModel)]="data.team" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Minutes:</mat-label>
+    <input type="number" matInput [(ngModel)]="data.minutes" min="0" max="59" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Seconds:</mat-label>
+    <input type="number" matInput [(ngModel)]="data.seconds" min="0" max="59" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button color="primary" mat-button (click)="updateClick()">Update</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button color="warn" mat-button (click)="removeClick()">Remove</button>
+</div> 
+

@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.team}}</h1>
+<div *ngIf="!data.grouped" mat-dialog-content>
+  <p>Team Grouping</p>
+  <mat-form-field>
+    <input cdkFocusInitial #groupInput matInput [(ngModel)]="data.grouping">
+  </mat-form-field>
+</div>
+<div *ngIf="data.grouped" mat-dialog-content>
+  <p>Group Makeup</p>
+  <mat-form-field>
+    <mat-label>Members</mat-label>
+    <mat-select [(ngModel)]="data.groupTeams" multiple>
+      <mat-option *ngFor="let team of data.selectedTeams" [value]="team">{{team}}</mat-option>
+    </mat-select>
+</mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="data">Ok</button>
+</div> 
+

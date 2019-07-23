@@ -1,0 +1,106 @@
+
+<mat-expansion-panel class="header" [(expanded)]="headerInfoExpanded">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span [ngClass]="{'primary-color': resultsModified}">Team Results</span>
+    </mat-panel-title>
+    <mat-panel-description class="no-wrap">
+      <span *ngIf="!headerInfoExpanded">{{buildDesc()}}</span>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="btn-container">
+    <br />
+    <button mat-raised-button color="primary" [disabled]="!resultsModified" (click)="undoChanges()">
+      Undo Result Changes
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!raceLogic.hasGroupings" (click)="undoGroupings()">
+      Undo Groupings
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!raceLogic.hasGroupings && !resultsModified" (click)="saveChanges()">
+      Save
+    </button>
+    <button mat-icon-button color="primary" (click)="showAddModal()">
+      <mat-icon>person_add</mat-icon>
+    </button>
+  </div>
+  <br />
+  <div class="container"> 
+    <table id="tblInfo" class="mat-elevation-z8">
+      <thead>
+        <tr>
+          <th>PL</th>
+          <th>TEAM</th>
+          <th>Total Time</th>
+          <th>Avg. Time</th>
+          <th>Spread</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of scoringKeys; let i = index" (click)="showGroupingModal(key)" 
+        (mouseenter)="hoveredTeam = key" (mouseleave)="hoveredTeam = ''"
+        long-press (longpress)="highlightTeam(key)"
+        >
+          <td>
+            {{i+1}}
+          </td>
+          <td>
+            {{key}}
+          </td>
+          <td>
+            {{formatingUtil.formatTime(raceInfo[key].totalTime)}}
+          </td>
+          <td>
+            {{formatingUtil.formatTime(raceInfo[key].average,true)}}
+          </td>
+          <td>
+            {{formatingUtil.formatTime(raceInfo[key].spread,true)}}
+          </td>
+          <td>
+            {{raceInfo[key].score}}
+            <!-- Hover for desktop/long press mobile -->
+            <div *ngIf="true || hoveredTeam === key" class="highlight-icon" matTooltip="Highlight team" matTooltipShowDelay="1000" 
+            (click)="hoveredTeam === key && highlightTeam(key)"
+            >
+              <mat-icon color="primary" [ngClass]="{'white' : hoveredTeam !== key}">home</mat-icon>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-expansion-panel>
+<div class="content">
+  <br />
+  <div class="center">
+    <h1>{{title}}</h1>
+    <h3 *ngIf="desc">{{desc}}</h3>
+  </div>
+  <br />
+  <div (click)="headerInfoExpanded = false;" cdkDropList (cdkDropListDropped)="dropLogic.drop(this,$event)" class="container">
+    <table id="tblResult" class="mat-elevation-z8">
+      <thead>
+        <tr>
+          <th *ngFor="let key of resultKeys">
+            {{key}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- matTooltip behaves a little different on mobile -->
+        <tr matTooltip="Drag to simulate results" matTooltipShowDelay="1000"
+          matTooltipHideDelay="300" *ngFor="let result of results;let i = index" cdkDrag 
+          (cdkDragStarted)="closeHeaderInfo()" 
+          (click)="showModifyModal(i)" > 
+          <td *ngFor="let key of resultKeys">
+            {{result[key]}}
+            <span *ngIf="key === 'TEAM' && raceLogic.groupingData[result[key]]">
+              ({{raceLogic.groupingData[result[key]]}})
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />

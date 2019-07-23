@@ -1,0 +1,122 @@
+
+mat-expansion-panel.mat-expansion-panel.header {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  max-height:65vh;
+}
+
+mat-expansion-panel.mat-expansion-panel.header.mat-expanded {
+    overflow-y:auto;
+}
+
+@media (max-width: 599px){
+  mat-expansion-panel.mat-expansion-panel.header {
+      top: 56px;
+  }
+}
+
+.button-add {
+  color:white;
+  cursor:pointer;
+  background-color:green;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+table thead th {
+  background-color:rgb(220, 220, 220)
+}
+
+#tblInfo tbody tr td {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+table tbody tr:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+table#tblResult tbody tr, table#tblInfo tbody tr {
+  cursor:pointer;
+}
+
+table#tblResult {
+  width:92%;
+  margin:0 auto;
+}
+
+.cdk-drag-preview {
+  background-color:rgb(238, 238, 238)!important;
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  opacity:.8;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: rgba(238,238,238,.3)}
+
+.container {
+  margin:0 5px 0 5px;
+  padding:0px;
+}
+
+.btn-container button {
+  margin-right:8px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+
+.highlight-icon {
+  float:right;
+}
+
+.highlight-icon mat-icon.white {
+  opacity: 0!important;
+}
+
