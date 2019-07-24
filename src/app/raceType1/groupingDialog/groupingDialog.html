@@ -2,7 +2,7 @@
 <div *ngIf="!data.grouped" mat-dialog-content>
   <p>Team Grouping</p>
   <mat-form-field>
-    <input cdkFocusInitial #groupInput matInput [(ngModel)]="data.grouping">
+    <input cdkFocusInitial #groupInput matInput [(ngModel)]="data.grouping" />
   </mat-form-field>
 </div>
 <div *ngIf="data.grouped" mat-dialog-content>

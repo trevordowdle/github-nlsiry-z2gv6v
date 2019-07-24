@@ -53,8 +53,9 @@
     <div>
       <mat-action-list *ngIf="races$ | async; let races; else loading">
         <button matTooltip="{{race.gender + ' ' + race.year}}" matTooltipShowDelay="1000"
-            matTooltipHideDelay="300" *ngFor="let race of races" mat-list-item (click)="setRace(race)">{{race.name}}
-            </button>
+            matTooltipHideDelay="300" *ngFor="let race of races" mat-list-item (click)="setRace(race)">
+          {{race.name}}
+        </button>
       </mat-action-list>
     </div>
     <div *ngIf="this.results && !this.results.length">
