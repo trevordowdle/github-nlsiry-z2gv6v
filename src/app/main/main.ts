@@ -122,7 +122,9 @@ export class Main {
       map(res=>{
         if(res['docs']){
           this.results = res['docs'].map(row=>{
-            return row.data();
+            let rowRes = row.data();
+            rowRes.id = row.id;
+            return rowRes;
           });
           return this.results;
         }
@@ -151,6 +153,12 @@ export class Main {
     this.raceObj.desc = '';
     this.raceObj.orig = true;
     this.first = true;
+    history.pushState({},this.raceObj.title,'/?id='+race.id);
+  }
+
+  backToMain(){
+    this.raceObj.title = null;
+    history.pushState({},this.raceObj.title,'/');
   }
 
 }
