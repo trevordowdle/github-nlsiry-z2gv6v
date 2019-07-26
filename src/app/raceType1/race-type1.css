@@ -117,3 +117,7 @@ tr:nth-child(even){background-color: rgba(238,238,238,.3)}
   top:0px;
   right:0px;
 }
+
+.highlighted {
+  background-color:green!important;
+}

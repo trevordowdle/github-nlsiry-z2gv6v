@@ -260,8 +260,7 @@ highlightedTeam:'';
   }
 
   highlightTeam(team,ev){
-    //event.stopPropagation();
-    alert('highlight team ' + team);
+    this.highlightedTeam = this.highlightedTeam === team ? '' : team;
   }
 
   stopPropagation(){

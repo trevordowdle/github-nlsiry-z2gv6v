@@ -37,7 +37,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let key of scoringKeys; let i = index" (click)="showGroupingModal(key)">
+        <tr *ngFor="let key of scoringKeys; let i = index" (click)="showGroupingModal(key)" [ngClass]="{'highlighted': key === highlightedTeam}">
           <td>
             {{i+1}}
           </td>
@@ -61,7 +61,7 @@
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="showGroupingModal(key)">
                 <mat-icon>group</mat-icon>
-                <span>Group</span>
+                <span>{{raceLogic.groupingData[key] === highlightedTeam ? 'Ungroup' : 'Group'}}</span>
               </button>
               <button mat-menu-item (click)="highlightTeam(key)">
                 <mat-icon>highlight</mat-icon>
@@ -95,7 +95,8 @@
         <tr matTooltip="Drag to simulate results" matTooltipShowDelay="1000"
           matTooltipHideDelay="300" *ngFor="let result of results;let i = index" cdkDrag 
           (cdkDragStarted)="closeHeaderInfo()" 
-          (click)="showModifyModal(i)" > 
+          (click)="showModifyModal(i)" 
+          [ngClass]="{'highlighted': (highlightedTeam && (result['TEAM'] === highlightedTeam || raceLogic.groupingData[result['TEAM']] === highlightedTeam))}" > 
           <td *ngFor="let key of resultKeys">
             {{result[key]}}
             <span *ngIf="key === 'TEAM' && raceLogic.groupingData[result[key]]">
@@ -108,3 +109,4 @@
   </div>
 </div>
 <br />
+{{highlightedTeam}}
