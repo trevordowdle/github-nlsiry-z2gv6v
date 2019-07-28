@@ -157,6 +157,9 @@ highlightedTeam:'';
         }
         else {
           this.raceLogic.handleGrouping(result);
+          if(result.team === this.highlightedTeam){
+            this.highlightedTeam = '';
+          }
         }
         this.buildResults(this.startResults);
         this._snackBar.open('Updated',null,{

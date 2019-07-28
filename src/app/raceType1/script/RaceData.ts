@@ -4,10 +4,10 @@ export class RaceData {
     return initialResults.reduce((output,result,i)=>{
       let info = result.split("-*-");
       output.push({
-        NAME:info[1],
-        YR:omitYear ? '' : info[2],
-        TEAM:info[3],
-        TIME:info[5]
+        NAME:info[0],
+        YR:omitYear ? '' : info[1],
+        TEAM:info[2],
+        TIME:info[3]
       });
       return output;
     },[]);

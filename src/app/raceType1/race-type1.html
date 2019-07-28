@@ -61,11 +61,11 @@
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="showGroupingModal(key)">
                 <mat-icon>group</mat-icon>
-                <span>{{raceLogic.groupingData[key] === highlightedTeam ? 'Ungroup' : 'Group'}}</span>
+                <span>{{raceLogic.currentGroups[key] ? 'Ungroup' : 'Group'}}</span>
               </button>
               <button mat-menu-item (click)="highlightTeam(key)">
                 <mat-icon>highlight</mat-icon>
-                <span>Highlight</span>
+                <span>{{highlightedTeam === key ? 'Un Highlight' : 'Highlight'}}</span>
               </button>
             </mat-menu>
           </td>
@@ -109,4 +109,3 @@
   </div>
 </div>
 <br />
-{{highlightedTeam}}
