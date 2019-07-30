@@ -8,6 +8,7 @@ export interface DialogData {
   place: number;
   minutes: number;
   seconds: number;
+  year: string;
 }
 
 @Component({

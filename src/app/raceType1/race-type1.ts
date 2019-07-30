@@ -173,7 +173,7 @@ highlightedTeam:'';
     //check for grouping here
     const dialogRef = this.dialog.open(AddDialog, {
       width: '300px',
-      height: '420px',
+      height: '440px',
       data: {
         results:this.startResults
       }
