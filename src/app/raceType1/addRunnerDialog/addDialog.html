@@ -11,14 +11,24 @@
     <input matInput [(ngModel)]="data.team" />
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Place</mat-label><!-- Really to set the initial time behind the scenes -->
-    <input type="number" matInput [(ngModel)]="data.place" (input)="updateTime()" min="1" />
+    <mat-label>Minutes:</mat-label>
+    <input type="number" matInput [(ngModel)]="data.minutes" min="0" max="59" (input)="updatePlace()" />
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Seconds:</mat-label>
+    <input type="number" matInput [(ngModel)]="data.seconds" min="0" max="59" (input)="updatePlace()" />
+  </mat-form-field>
+<!--   
+  <mat-form-field>
+    <mat-label>Place</mat-label>
+    <input type="number" matInput [(ngModel)]="data.place" (input)="updateTime()" min="1" />
+  </mat-form-field> 
+-->
   <br />
-  <mat-label *ngIf="data.time">Time: </mat-label>{{data.time}}
+  <mat-label *ngIf="data.place">Place: </mat-label>{{data.place}}
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button color="primary" (click)="addClick()">Add</button>
+  <button mat-button color="primary" (click)="addClick()">Add2</button>
 </div> 
 

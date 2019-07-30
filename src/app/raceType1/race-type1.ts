@@ -100,7 +100,7 @@ highlightedTeam:'';
         ) {
           let removedEntry = this.startResults.splice(index,1)[0];
           removedEntry.TEAM = result.team;
-          removedEntry.TIME = result.minutes+':'+result.seconds;
+          removedEntry.TIME = result.minutes+':'+(result.seconds < 10 ? '0' + result.seconds : result.seconds);
           let insIndex = this.startResults.findIndex(entry=>{
             let entryTimeInfo = this.breakDownTime(entry.TIME);
             if(result.minutes <= entryTimeInfo['minutes'] && result.seconds <= entryTimeInfo['seconds']){
@@ -181,13 +181,12 @@ highlightedTeam:'';
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        let ref = result['results'][result['place']-1];
-        if(!ref){
-          ref = result['results'][result['results'].length-1];
-        }
-        let addedEntry = JSON.parse(JSON.stringify(ref));
-        addedEntry.NAME = result.name;
-        addedEntry.TEAM = result.team;
+        let addedEntry = {
+          NAME: result.name,
+          TEAM: result.team,
+          TIME: result.minutes+':'+(result.seconds < 10 ? '0' + result.seconds : result.seconds),
+          YR: result.year || ''
+        };
         this.startResults.splice(result.place-1, 0,addedEntry);
         this.buildResults(this.startResults);
         this.resultsModified = true;
