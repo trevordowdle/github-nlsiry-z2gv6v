@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>Add runner</h1>
 <div mat-dialog-content>
-  <p *ngIf="!errMessage">Entry</p>
+  <p *ngIf="!errMessage">
+    <mat-label *ngIf="!data.place">Entry</mat-label>
+    <mat-label *ngIf="data.place">Place: {{data.place}}</mat-label>
+  </p>
   <p class="warn" *ngIf="errMessage">{{errMessage}}</p>
   <mat-form-field>
     <mat-label>Name</mat-label>
@@ -29,7 +32,6 @@
   </mat-form-field> 
 -->
   <br />
-  <mat-label *ngIf="data.place">Place: </mat-label>{{data.place}}
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

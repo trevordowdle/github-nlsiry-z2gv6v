@@ -46,6 +46,9 @@ export class AddDialog {
     if(this.errMessage){
       return false;
     }
+    if(!this.data.seconds){
+      this.data.seconds = 0;
+    }
     this.dialogRef.close(this.data);
   }
 
@@ -62,9 +65,13 @@ export class AddDialog {
       this.data.place = null;
       return false;
     }
+    let seconds = this.data.seconds;
+    if(!seconds){
+      seconds = 0;
+    }
     let insIndex = this.data['results'].findIndex(entry=>{
       let entryTimeInfo = this.breakDownTime(entry.TIME);
-      if(this.data.minutes <= entryTimeInfo['minutes'] && this.data.seconds <= entryTimeInfo['seconds']){
+      if(this.data.minutes <= entryTimeInfo['minutes'] && seconds <= entryTimeInfo['seconds']){
         return true;
       }
     });
