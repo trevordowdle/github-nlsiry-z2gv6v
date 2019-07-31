@@ -17,7 +17,7 @@
     </mat-form-field>
     <mat-form-field class="m-left">
       <mat-label>Classification</mat-label>
-      <mat-select [(value)]="filters.classification">
+      <mat-select [(value)]="filters.classification" (selectionChange)="clearDivision()">
         <mat-option value="college">
           College
         </mat-option>
@@ -26,13 +26,32 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="m-left">
+    <mat-form-field *ngIf="filters.classification === 'highschool'" class="m-left">
+      <mat-label>Division</mat-label>
+      <mat-select [(value)]="filters.division">
+        <mat-option value="">
+        </mat-option>
+        <mat-option value="utah">
+          Utah
+        </mat-option>
+        <mat-option value="national">
+          National
+        </mat-option>
+        <mat-option value="other">
+          Other
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="filters.classification === 'college'" class="m-left">
       <mat-label>Division</mat-label>
       <mat-select [(value)]="filters.division">
         <mat-option value="">
         </mat-option>
         <mat-option value="I">
           I
+        </mat-option>
+        <mat-option value="other">
+          Other
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -49,7 +68,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button color="primary" (click)="go()">Go</button>
+    <button mat-button color="primary" (click)="go()" [disabled]="filters.division === 'other'">Go</button>
     <div>
       <mat-action-list *ngIf="races$ | async; let races; else loading">
         <button matTooltip="{{race.gender + ' ' + race.year}}" matTooltipShowDelay="1000"
@@ -58,7 +77,7 @@
         </button>
       </mat-action-list>
     </div>
-    <div *ngIf="this.results && !this.results.length">
+    <div *ngIf="this.results && !this.results.length || filters.division === 'other'">
       <br />
       No results found, please contact trevordowdle@gmail.com if you would like a race added.
     </div>

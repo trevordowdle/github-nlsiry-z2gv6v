@@ -161,4 +161,8 @@ export class Main {
     history.pushState({},this.raceObj.title,'/');
   }
 
+  clearDivision(){
+    this.filters.division = '';
+  }
+
 }
