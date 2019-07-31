@@ -6,11 +6,12 @@
     <mat-label>Team</mat-label>
     <input cdkFocusInitial matInput [(ngModel)]="data.team" />
   </mat-form-field>
-  <mat-form-field>
+  <br />
+  <mat-form-field class="half">
     <mat-label>Minutes:</mat-label>
     <input type="number" matInput [(ngModel)]="data.minutes" min="0" max="59" />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="half margin-left">
     <mat-label>Seconds:</mat-label>
     <input type="number" matInput [(ngModel)]="data.seconds" min="0" max="59" />
   </mat-form-field>

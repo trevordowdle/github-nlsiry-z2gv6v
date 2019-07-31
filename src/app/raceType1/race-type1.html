@@ -1,5 +1,5 @@
 
-<mat-expansion-panel class="header" [(expanded)]="headerInfoExpanded">
+<mat-expansion-panel class="header" [(expanded)]="headerInfoExpanded" (closed)="detailsClosed($event)">
   <mat-expansion-panel-header>
     <mat-panel-title>
       <span [ngClass]="{'primary-color': resultsModified}">Team Results</span>

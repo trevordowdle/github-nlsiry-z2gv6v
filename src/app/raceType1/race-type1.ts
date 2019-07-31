@@ -70,6 +70,11 @@ highlightedTeam:'';
     this.results = info.results;
   }
 
+  detailsClosed(){
+    let header = document.getElementsByClassName('header')[0];
+    header.scrollTop = 0;
+  }
+
   openModifyDialog(index): void {
 
     let entry = this.startResults[index];
@@ -78,7 +83,7 @@ highlightedTeam:'';
     //seconds
     const dialogRef = this.dialog.open(ModifyDialog, {
       width: '320px',
-      height: '400px',
+      height: '335px',
       data: {
         minutes:timeInfo['minutes'],
         seconds:timeInfo['seconds'],
