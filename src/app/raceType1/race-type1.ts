@@ -233,7 +233,7 @@ highlightedTeam:'';
           title:this.title
         })
         .then((res)=>{
-          this.openShowUrlDialog(window.location.href+'?re='+res.id);
+          this.openShowUrlDialog(window.location.href.split('?')[0]+'?re='+res.id);
         });
       }
     });
