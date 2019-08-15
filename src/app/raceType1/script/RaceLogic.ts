@@ -66,7 +66,6 @@
         };
       }
       let infoRef = sInfo[team];
-      console.log(result['TIME']);
       if(infoRef.count < 5 && result['TIME'] !== 'DNF'){
         infoRef.count += 1;
         //infoRef.score += result['PL']; // may not be needed could be processed on the fly
