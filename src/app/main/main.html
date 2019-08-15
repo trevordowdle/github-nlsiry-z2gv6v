@@ -68,18 +68,17 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-button color="primary" (click)="go()" [disabled]="filters.division === 'other'">Go</button>
+    <button mat-button color="primary" (click)="go()" [disabled]="filters.division === 'other' || (!filters.year || !filters.classification)">Go</button>
     <div>
       <mat-action-list *ngIf="races$ | async; let races; else loading">
-        <button matTooltip="{{race.gender + ' ' + race.year}}" matTooltipShowDelay="1000"
-            matTooltipHideDelay="300" *ngFor="let race of races" mat-list-item (click)="setRace(race)">
-          {{race.name}}
+        <button *ngFor="let race of races" mat-list-item (click)="setRace(race)">
+          {{race.name + ' - ' + getGenderString(race) + ' ' + race.year}}
         </button>
       </mat-action-list>
     </div>
     <div *ngIf="this.results && !this.results.length || filters.division === 'other'">
       <br />
-      No results found, please contact trevordowdle@gmail.com for additional race requests.
+      <span *ngIf="this.results && !this.results.length">No results found, </span>Please contact trevordowdle@gmail.com for additional race requests.
     </div>
     <ng-template #loading>
       <div *ngIf="clicked">

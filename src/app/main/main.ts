@@ -32,6 +32,13 @@ export class Main {
     orig:null
   };
 
+  genderMap = {
+    'collegemale':'Men',
+    'collegefemale':'Women',
+    'highschoolmale':'Boys',
+    'highschoolfemale':'Girls'
+  }
+
   first = true;
   results;
   loading = false;
@@ -163,6 +170,15 @@ export class Main {
 
   clearDivision(){
     this.filters.division = '';
+  }
+
+
+  getGenderString(race){
+    return this.genderMap[race.classification+race.gender];
+  }
+
+  upperFirst(text){
+    return text[0].toUpperCase()+text.substring(1);
   }
 
 }
