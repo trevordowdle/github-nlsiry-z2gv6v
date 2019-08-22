@@ -1,5 +1,8 @@
 export class FormatingUtil {
   formatTime(time,mili?){
+    if(!time){
+      time = '';
+    }
     let miliCompare = 0;
     let divide = 1000;
     if(mili){
