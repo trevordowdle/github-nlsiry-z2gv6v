@@ -105,7 +105,7 @@ highlightedTeam:'';
         ) {
           let removedEntry = this.startResults.splice(index,1)[0];
           removedEntry.TEAM = result.team;
-          removedEntry.TIME = result.minutes+':'+(result.seconds < 10 ? '0' + result.seconds : result.seconds);
+          removedEntry.TIME = result.minutes+':'+(result.seconds < 10 ? '0' + parseFloat(result.seconds) : result.seconds);
           let insIndex = this.startResults.findIndex(entry=>{
             let entryTimeInfo = this.breakDownTime(entry.TIME);
             if(result.minutes < entryTimeInfo['minutes'] || (result.minutes <= entryTimeInfo['minutes'] && result.seconds <= entryTimeInfo['seconds'])){
