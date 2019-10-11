@@ -62,7 +62,7 @@ table#tblResult tbody tr, table#tblInfo tbody tr {
 }
 
 table#tblResult {
-  width:92%;
+  max-width:1200px;
   margin:0 auto;
 }
 
