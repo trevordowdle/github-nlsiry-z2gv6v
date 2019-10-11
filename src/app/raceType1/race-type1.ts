@@ -33,7 +33,6 @@ dropLogic:any;
 formatingUtil:any;
 headerInfoExpanded:boolean = false;
 highlightedTeam:'';
-doDragTimeout=null;
 
 @Input() raceObj:any = {};
 
@@ -274,21 +273,6 @@ doDragTimeout=null;
   stopPropagation(){
     event.stopPropagation();
   }
-
-  holdDragDown(){
-    let el = event.currentTarget;
-    this.doDragTimeout = setTimeout(()=>{
-      el['className'] += " mat-elevation-z2";
-    },200);
-  }
-
-  dragLeave(){
-    if(this.doDragTimeout){
-      clearTimeout(this.doDragTimeout);
-    }
-    event.currentTarget['className'] = event.currentTarget['className'].replace('mat-elevation-z2','');
-  }
-
 
 }
 
