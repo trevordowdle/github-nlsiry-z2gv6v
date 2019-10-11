@@ -92,8 +92,9 @@
       </thead>
       <tbody>
         <!-- matTooltip behaves a little different on mobile -->
-        <tr matTooltip="Drag to simulate results" matTooltipShowDelay="1000"
-          matTooltipHideDelay="300" *ngFor="let result of results;let i = index" cdkDrag 
+        <tr matTooltip="Hold and drag to tweak results" matTooltipShowDelay="800"
+          matTooltipHideDelay="300" *ngFor="let result of results;let i = index" 
+          cdkDrag [cdkDragStartDelay]="200"
           (cdkDragStarted)="closeHeaderInfo()" 
           (click)="showModifyModal(i)" 
           [ngClass]="{'highlighted': (highlightedTeam && (result['TEAM'] === highlightedTeam || raceLogic.groupingData[result['TEAM']] === highlightedTeam))}" > 

@@ -45,7 +45,7 @@ table thead th {
   background-color:rgb(220, 220, 220)
 }
 
-#tblInfo tbody tr td {
+#tblInfo tbody tr td, #tblResult tbody tr td {
   user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
