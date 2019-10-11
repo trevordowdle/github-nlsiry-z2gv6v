@@ -97,6 +97,8 @@
           cdkDrag [cdkDragStartDelay]="200"
           (cdkDragStarted)="closeHeaderInfo()" 
           (click)="showModifyModal(i)" 
+          (mousedown)="holdDragDown()"
+          (mouseleave)="dragLeave()"
           [ngClass]="{'highlighted': (highlightedTeam && (result['TEAM'] === highlightedTeam || raceLogic.groupingData[result['TEAM']] === highlightedTeam))}" > 
           <td *ngFor="let key of resultKeys">
             {{result[key]}}
