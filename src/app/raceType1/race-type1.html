@@ -100,21 +100,22 @@
           (click)="showModifyModal(i)" 
           [ngClass]="{'highlighted': (highlightedTeam && (result['TEAM'] === highlightedTeam || raceLogic.groupingData[result['TEAM']] === highlightedTeam))}" > 
             <td>
-              <div cdkDragHandle
+              <button mat-stroked-button class="drag-button"
+                cdkDragHandle
                 matTooltip="drag here to tweak results" matTooltipShowDelay="800"
                 matTooltipHideDelay="300"
               >
-                <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+<!--                 <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
                   <path d="M0 0h24v24H0z" fill="none"></path>
-                </svg>
-<!--                 <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sort-alt" class="svg-inline--fa fa-sort-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                  <g class="fa-group">
-                    <path class="fa-secondary" fill="currentColor" d="M379.29 132.69l-80-96a16 16 0 0 0-22.62 0l-80 96C186.65 142.74 193.78 160 208 160h48v304a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V160h48c14.19 0 21.36-17.24 11.29-27.31z" opacity="0.4"></path>
-                    <path class="fa-primary" fill="currentColor" d="M176 352h-48V48a16 16 0 0 0-16-16H80a16 16 0 0 0-16 16v304H16c-14.19 0-21.36 17.24-11.29 27.31l80 96a16 16 0 0 0 22.62 0l80-96C197.35 369.26 190.22 352 176 352z" opacity="0.4"></path>
-                  </g>
                 </svg> -->
-              </div>
+                 <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sort-alt" class="svg-inline--fa fa-sort-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <g class="fa-group">
+                    <path class="fa-secondary" fill="currentColor" d="M379.29 132.69l-80-96a16 16 0 0 0-22.62 0l-80 96C186.65 142.74 193.78 160 208 160h48v304a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V160h48c14.19 0 21.36-17.24 11.29-27.31z" [attr.opacity]="i === 0 ? 0.2 : 0.4"></path>
+                    <path class="fa-primary" fill="currentColor" d="M176 352h-48V48a16 16 0 0 0-16-16H80a16 16 0 0 0-16 16v304H16c-14.19 0-21.36 17.24-11.29 27.31l80 96a16 16 0 0 0 22.62 0l80-96C197.35 369.26 190.22 352 176 352z" [attr.opacity]="i === results.length-1 ? 0.2 : 0.4"></path>
+                  </g>
+                </svg> 
+              </button>
             </td>
           <td *ngFor="let key of resultKeys">
             {{result[key]}}
