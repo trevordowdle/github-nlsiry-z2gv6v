@@ -32,13 +32,18 @@ raceLogic:any;
 dropLogic:any;
 formatingUtil:any;
 headerInfoExpanded:boolean = false;
-highlightedTeam:'';
+highlightedTeam = '';
 
 @Input() raceObj:any = {};
 
   constructor(public dialog: MatDialog, public db: AngularFirestore, private _snackBar: MatSnackBar){}
 
   ngOnInit(){
+    let hlIndex = window.location.href.indexOf('hl=');
+    if(hlIndex){
+      let highlightedTeam = window.location.href.substring(hlIndex+3).split('&')[0];
+      this.highlightedTeam = highlightedTeam;
+    }
     this.formatingUtil = new FormatingUtil();
     this.raceLogic = new RaceLogic();
     this.dropLogic = new DropLogic();
