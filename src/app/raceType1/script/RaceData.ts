@@ -3,7 +3,6 @@ export class RaceData {
     let initialResults = raceData.split('||');
     return initialResults.reduce((output,result,i)=>{
       let info = result.split("-*-");
-      debugger;
       output.push({
         NAME:info[0],
         YR:omitYear ? '' : info[1],
