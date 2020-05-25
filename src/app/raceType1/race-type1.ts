@@ -128,7 +128,6 @@ highlightedTeam = '';
             }
           });
           this.startResults.splice(insIndex,0,removedEntry);
-          debugger;
           this.buildResults(this.startResults);
           this.resultsModified = true;
         }
