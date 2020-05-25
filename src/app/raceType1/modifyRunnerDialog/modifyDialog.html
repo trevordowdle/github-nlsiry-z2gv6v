@@ -7,6 +7,11 @@
     <input cdkFocusInitial matInput [(ngModel)]="data.team" />
   </mat-form-field>
   <br />
+  <mat-form-field>
+    <mat-label>Tag</mat-label>
+    <input matInput [(ngModel)]="data.tag" />
+  </mat-form-field>
+  <br />
   <mat-form-field class="half">
     <mat-label>Minutes:</mat-label>
     <input type="number" matInput [(ngModel)]="data.minutes" min="0" max="59" />

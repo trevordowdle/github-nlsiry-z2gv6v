@@ -23,10 +23,11 @@ title:'';
 desc:'';
 raceInfo:object;
 scoringKeys:object;
+hasTags:boolean;
 results:any;
 originalResults:any;
 startResults:any;
-resultKeys:Array<string> = ["PL","NAME","YR","TEAM","TIME","SCORE"];
+resultKeys:Array<string> = ["PL","NAME","TAG","YR","TEAM","TIME","SCORE"];
 resultsModified:boolean = false;
 raceLogic:any;
 dropLogic:any;
@@ -70,9 +71,16 @@ highlightedTeam = '';
 
   buildResults(startResults){
     let info = this.raceLogic.buildResults(startResults);
+    this.hasTags = info.hasTags;
     this.raceInfo = info.raceInfo;
     this.scoringKeys = info.scoringKeys;
     this.results = info.results;
+  }
+
+  filterKeys(keys){
+    return keys.filter(key=>{
+      return key !== 'TAG' || this.hasTags;
+    });
   }
 
   detailsClosed(){
@@ -88,12 +96,13 @@ highlightedTeam = '';
     //seconds
     const dialogRef = this.dialog.open(ModifyDialog, {
       width: '320px',
-      height: '335px',
+      height: '381px',
       data: {
         minutes:timeInfo['minutes'],
         seconds:timeInfo['seconds'],
         team:entry.TEAM,
-        name:entry.NAME
+        name:entry.NAME,
+        tag:entry.TAG
       }
     });
 
@@ -106,9 +115,10 @@ highlightedTeam = '';
         }
         else if (
           result.minutes !== timeInfo['minutes'] || result.seconds !== timeInfo['seconds']
-          || result.team !== entry.TEAM
+          || result.team !== entry.TEAM || result.tag !== entry.TAG
         ) {
           let removedEntry = this.startResults.splice(index,1)[0];
+          removedEntry.TAG = result.tag;
           removedEntry.TEAM = result.team;
           removedEntry.TIME = result.minutes+':'+(result.seconds < 10 ? '0' + parseFloat(result.seconds) : result.seconds);
           let insIndex = this.startResults.findIndex(entry=>{
@@ -118,6 +128,7 @@ highlightedTeam = '';
             }
           });
           this.startResults.splice(insIndex,0,removedEntry);
+          debugger;
           this.buildResults(this.startResults);
           this.resultsModified = true;
         }

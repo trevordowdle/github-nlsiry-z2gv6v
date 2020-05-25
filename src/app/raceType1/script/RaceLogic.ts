@@ -32,7 +32,9 @@
   }
   buildResults(startResults){
     //get Scoring info
-    let scoringInfo = this.buildScoringInfo(startResults);
+    let scoringInfoCheckTags = this.buildScoringInfoCheckTags(startResults);
+
+    let scoringInfo = scoringInfoCheckTags.scoringInfo;
 
     //get Scoring filters
     let scoringFilters = this.buildScoringFilters(scoringInfo);
@@ -46,18 +48,18 @@
     let raceInfo = this.populateRaceInfo(scoringInfo,scoreTotals);
     //get scoring keys in order by place
     let scoringKeys = this.getScoringKeys(raceInfo); 
-    return {raceInfo:raceInfo,scoringKeys:scoringKeys,results:results};
+    return {raceInfo:raceInfo,scoringKeys:scoringKeys,results:results, hasTags:scoringInfoCheckTags.hasTags};
   }
   //order,totaltime,scoringTimes
-  buildScoringInfo(results){
+  buildScoringInfoCheckTags(results){
     return results.reduce((sInfo,result,i)=>{
       let team = result['TEAM'];
       if(this.groupingData[team]){
         team = this.groupingData[team];
       }
 
-      if(!sInfo[team]){
-        sInfo[team] = {
+      if(!sInfo.scoringInfo[team]){
+        sInfo.scoringInfo[team] = {
           count:0,
           SCORE:0,
           order:[],
@@ -65,7 +67,7 @@
           scoringTimes:[]
         };
       }
-      let infoRef = sInfo[team];
+      let infoRef = sInfo.scoringInfo[team];
       if(infoRef.count < 5 && result['TIME'] !== 'DNF'){
         infoRef.count += 1;
         //infoRef.score += result['PL']; // may not be needed could be processed on the fly
@@ -73,8 +75,11 @@
         this.addTime(result['TIME'],infoRef.totalTime); // may not be needed could be processed on the fly
         infoRef.scoringTimes.push(result['TIME']);
       }
+      if(result.TAG){
+        sInfo.hasTags = true;
+      }
       return sInfo;
-    },{});
+    },{scoringInfo:{},hasTags:false});
   }
   //order,totaltime,scoringTimes
   addTime(time:string,elapsedTime:Date,subtract?:boolean){

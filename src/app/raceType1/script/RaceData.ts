@@ -7,7 +7,8 @@ export class RaceData {
         NAME:info[0],
         YR:omitYear ? '' : info[1],
         TEAM:info[2],
-        TIME:info[3]
+        TIME:info[3],
+        TAG:info[4]
       });
       return output;
     },[]);

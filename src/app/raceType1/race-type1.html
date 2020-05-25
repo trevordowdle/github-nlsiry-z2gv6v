@@ -86,7 +86,7 @@
       <thead>
         <tr>
           <th></th>
-          <th *ngFor="let key of resultKeys">
+          <th *ngFor="let key of filterKeys(resultKeys)">
             {{key}}
           </th>
         </tr>
@@ -117,7 +117,7 @@
                 </svg> 
               </button>
             </td>
-          <td *ngFor="let key of resultKeys">
+          <td *ngFor="let key of filterKeys(resultKeys)">
             {{result[key]}}
             <span *ngIf="key === 'TEAM' && raceLogic.groupingData[result[key]]">
               ({{raceLogic.groupingData[result[key]]}})

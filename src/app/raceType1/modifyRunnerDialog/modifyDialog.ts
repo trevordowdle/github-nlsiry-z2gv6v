@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 export interface DialogData {
   team: string;
   name: string;
+  tag: string;
   minutes: number;
   seconds: number;
   remove: boolean;
